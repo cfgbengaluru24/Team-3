@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
-// import '../css/login.css';
+import { Box, Typography, TextField, Button, Container } from '@mui/material';
+import './Login.css';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +20,7 @@ const Login = () => {
             console.log("Login Response:", response.data);
             if (response.status === 200) {
                 setMessage('');
-                login(response.data.username, response.data.role);
+                // Perform login action (e.g., store user data, redirect)
                 navigate('/home');
             } else {
                 setMessage('Login failed');
@@ -33,40 +32,55 @@ const Login = () => {
     };
 
     return (
-        <div className='loginbody'>
-
-        <div className="login-container">
-            
-            <div className="login-form-container">
-                <h2 className="login-title">Login</h2>
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="username"
-                        className="login-input"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        className="login-input"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <button type="submit" className="login-button">Login</button>
-                </form>
-                <div className="redir">
-                    If new user ?
-                    <a href='/register'>Sign Up</a>
-                </div>
-                {message && <p className="login-message">{message}</p>}
-            </div>
-        </div>
+        <div className='login-body'>
+            <div className='login-image'></div>
+            <Container component="main" maxWidth="xs">
+                <Box className="login-box">
+                    <Typography variant="h4" component="h1" align="center" className="login-heading">
+                        Login
+                    </Typography>
+                    <form className="login-form" onSubmit={handleSubmit}>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="Username"
+                            name="username"
+                            autoComplete="username"
+                            autoFocus
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={username}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            className="login-button"
+                        >
+                            Login
+                        </Button>
+                        {message && <Typography color="error" align="center" className="login-message">{message}</Typography>}
+                    </form>
+                    <Box textAlign="center" marginTop="1rem">
+                        If new user? <a href="/register">Sign Up</a>
+                    </Box>
+                </Box>
+            </Container>
         </div>
     );
 };
