@@ -29,6 +29,7 @@ const Navbar = () => {
                 <Typography variant="h6" component="div" className="nav-logo">
                     EXPA
                 </Typography>
+            
                 <Box className="nav-main_list">
                     <ul className="nav-navlinks">
                         <li><a href="#">About</a></li>

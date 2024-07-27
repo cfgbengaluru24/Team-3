@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 
 const resourcesData = [
   { 
+    Imgsrc: 'path/to/critical-thinking.jpg', // Add appropriate image path
     title: 'Critical Thinking', 
     content: 'Enhance your critical thinking skills with these resources.',
     links: [
@@ -12,6 +13,7 @@ const resourcesData = [
     ]
   },
   { 
+    Imgsrc: 'path/to/gender-sensitivity.jpg', // Add appropriate image path
     title: 'Gender Sensitivity', 
     content: 'Learn about gender sensitivity with these resources.',
     links: [
@@ -20,6 +22,7 @@ const resourcesData = [
     ]
   },
   { 
+    Imgsrc: 'path/to/ethics.jpg', // Add appropriate image path
     title: 'Ethics', 
     content: 'Explore ethical principles with these resources.',
     links: [
@@ -28,6 +31,7 @@ const resourcesData = [
     ]
   },
   { 
+    Imgsrc: 'path/to/communication.jpg', // Add appropriate image path
     title: 'Communication', 
     content: 'Improve your communication skills with these resources.',
     links: [
@@ -46,7 +50,7 @@ const Resources = () => {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="resources" style={{ marginTop: '50px' }}>
         <div className="cards">
           {resourcesData.map((resource, index) => (
@@ -54,6 +58,7 @@ const Resources = () => {
               key={index}
               className={`card ${expandedCard === index ? 'expanded' : ''}`}
               onClick={() => handleCardClick(index)}
+              style={{ backgroundImage: `url(${resource.Imgsrc})` }}
             >
               <h2>{resource.title}</h2>
               {expandedCard === index && (
@@ -66,7 +71,7 @@ const Resources = () => {
                       </li>
                     ))}
                   </ul>
-                  {/* <button className="close-btn" onClick={() => setExpandedCard(null)}>&times;</button> */}
+                  <button className="close-btn" onClick={() => setExpandedCard(null)}>&times;</button>
                 </div>
               )}
             </div>
