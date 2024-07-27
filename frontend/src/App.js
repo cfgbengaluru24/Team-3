@@ -12,28 +12,30 @@ import Resources from './components/Resources';
 import AssessmentTrainer from './components/TrainerAssessment';
 import AssessmentTrainee from './components/TraineeAssessment';
 import Check from './components/Check';
-import TrainerReg from './components/TrainerReg'
+import {AuthProvider} from './AuthContext';
+
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/progress" element={<Progress />} />
-        <Route path="/registertrainer" element={<RegisterTrainer />} />
-        <Route path="/campregister" element={<CampRegister />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/assessmenttrainer" element={<AssessmentTrainer />} />
-        <Route path="/assessmenttrainee" element={<AssessmentTrainee />} />
-        <Route path="/check" element={<Check />} />
-        <Route path='/SessionForm' element={<TrainerReg/>}/>
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/registertrainer" element={<RegisterTrainer />} />
+          <Route path="/campregister" element={<CampRegister />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/assessmenttrainer" element={<AssessmentTrainer />} />
+          <Route path="/assessmenttrainee" element={<AssessmentTrainee />} />
+          <Route path="/check" element={<Check />} />
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
