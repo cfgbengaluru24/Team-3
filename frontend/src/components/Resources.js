@@ -1,65 +1,80 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Card, CardContent, Typography, IconButton, Collapse, Box, List, ListItem, ListItemText } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React, { useState } from 'react';
 import './Resources.css';
+import Navbar from './Navbar';
+
+const resourcesData = [
+  { 
+    title: 'Critical Thinking', 
+    content: 'Enhance your critical thinking skills with these resources.',
+    links: [
+      { type: 'pdf', url: 'http://example.com/critical-thinking.pdf', text: 'Critical Thinking PDF' },
+      { type: 'video', url: 'http://example.com/critical-thinking-video', text: 'Critical Thinking Video' }
+    ]
+  },
+  { 
+    title: 'Gender Sensitivity', 
+    content: 'Learn about gender sensitivity with these resources.',
+    links: [
+      { type: 'pdf', url: 'http://example.com/gender-sensitivity.pdf', text: 'Gender Sensitivity PDF' },
+      { type: 'video', url: 'http://example.com/gender-sensitivity-video', text: 'Gender Sensitivity Video' }
+    ]
+  },
+  { 
+    title: 'Ethics', 
+    content: 'Explore ethical principles with these resources.',
+    links: [
+      { type: 'pdf', url: 'http://example.com/ethics.pdf', text: 'Ethics PDF' },
+      { type: 'video', url: 'http://example.com/ethics-video', text: 'Ethics Video' }
+    ]
+  },
+  { 
+    title: 'Communication', 
+    content: 'Improve your communication skills with these resources.',
+    links: [
+      { type: 'pdf', url: 'http://example.com/communication.pdf', text: 'Communication PDF' },
+      { type: 'video', url: 'http://example.com/communication-video', text: 'Communication Video' }
+    ]
+  },
+];
 
 const Resources = () => {
-    const [resources, setResources] = useState(['critical']);
-    const [expanded, setExpanded] = useState(null);
+  const [expandedCard, setExpandedCard] = useState(null);
 
-    useEffect(() => {
-        const fetchResources = async () => {
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/resources`);
-                setResources(response.data);
-            } catch (error) {
-                if (error.response && error.response.status === 401) {
-                    // navigate('/login');
-                }
-            }
-        };
-        fetchResources();
-    }, []);
+  const handleCardClick = (index) => {
+    setExpandedCard(index === expandedCard ? null : index);
+  };
 
-    const handleExpandClick = (index) => {
-        setExpanded(expanded === index ? null : index);
-    };
-
-    return (
-        <div className="resources-container">
-            <h1>Resources</h1>
-            {resources.map((resource, index) => (
-                <Card key={index} className="resource-card">
-                    <CardContent>
-                        <Box display="flex" justifyContent="space-between" alignItems="center">
-                            <Typography variant="h6">{resource.title}</Typography>
-                            <IconButton
-                                onClick={() => handleExpandClick(index)}
-                                aria-expanded={expanded === index}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </IconButton>
-                        </Box>
-                        <Typography variant="body2">{resource.description}</Typography>
-                    </CardContent>
-                    <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-                        <CardContent>
-                            <Typography variant="h6">Related Resources</Typography>
-                            <List>
-                                {resource.content.map((item, i) => (
-                                    <ListItem key={i} button component="a" href={item.link} target="_blank">
-                                        <ListItemText primary={`${item.type}: ${item.name}`} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </CardContent>
-                    </Collapse>
-                </Card>
-            ))}
+  return (
+    <div>
+      <Navbar/>
+      <div className="resources" style={{ marginTop: '50px' }}>
+        <div className="cards">
+          {resourcesData.map((resource, index) => (
+            <div
+              key={index}
+              className={`card ${expandedCard === index ? 'expanded' : ''}`}
+              onClick={() => handleCardClick(index)}
+            >
+              <h2>{resource.title}</h2>
+              {expandedCard === index && (
+                <div className="content">
+                  <p>{resource.content}</p>
+                  <ul>
+                    {resource.links.map((link, linkIndex) => (
+                      <li key={linkIndex}>
+                        <a href={link.url} target="_blank" rel="noopener noreferrer">{link.text}</a>
+                      </li>
+                    ))}
+                  </ul>
+                  {/* <button className="close-btn" onClick={() => setExpandedCard(null)}>&times;</button> */}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Resources;
