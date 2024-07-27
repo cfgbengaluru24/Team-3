@@ -22,7 +22,7 @@ const Navbar = () => {
         <AppBar position="fixed" className="nav-nav" style={{backgroundColor:'black', marginBottom:"20px"}}>
             <Toolbar className="nav-toolbar">
                 <Typography variant="h6" component="div" className="nav-logo">
-                    EXCPA
+                    EXPA
                 </Typography>
                 <Box className="nav-main_list">
                     <ul className="nav-navlinks">
