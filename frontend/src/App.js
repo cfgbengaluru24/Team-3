@@ -12,7 +12,7 @@ import Resources from './components/Resources';
 import AssessmentTrainer from './components/TrainerAssessment';
 import AssessmentTrainee from './components/TraineeAssessment';
 import Check from './components/Check';
-
+import TrainerReg from './components/TrainerReg'
 
 const App = () => {
   return (
@@ -30,6 +30,7 @@ const App = () => {
         <Route path="/assessmenttrainer" element={<AssessmentTrainer />} />
         <Route path="/assessmenttrainee" element={<AssessmentTrainee />} />
         <Route path="/check" element={<Check />} />
+        <Route path='/SessionForm' element={<TrainerReg/>}/>
         {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>
     </Router>

@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    font-size: 62.5%;
+    background-color: #AFAF9E ; /* Light background color */
+}
+
+.session-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #413824; /* Dark accent color */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #FCFAFA; /* Light container color */
+}
+
+.session-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #47463E; /* Primary dark color */
+}
+
+.session-form-group {
+    margin-bottom: 20px;
+}
+
+.session-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #47463E; /* Primary dark color */
+}
+
+.session-input, .session-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #AFAF9E; /* Light accent color */
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #F8F7F4; /* Very light background color */
+    color: #1E231A; /* Very dark text color */
+}
+
+.session-input::placeholder, .session-select::placeholder {
+    color: #AFAF9E; /* Light accent color */
+}
+
+.session-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #AFAF9E ; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.session-button:hover {
+    background-color: #8F8060; /* Darker button color */
+}
