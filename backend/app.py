@@ -1,14 +1,15 @@
+import os
+import re
+import asyncio
+from datetime import datetime, timedelta
 from flask import Flask, request, jsonify, session
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from dotenv import load_dotenv
-import os
-import re
 from werkzeug.security import generate_password_hash, check_password_hash
 import logging
+from chatbot.chatbot import interview
 from bson import ObjectId 
-import requests
-import asyncio
 
 # Load environment variables from .env file
 load_dotenv()
@@ -27,11 +28,10 @@ mongo = PyMongo(app)
 def index():
     return "Welcome to EXPA India!"
 
-#
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    name=data.get('name')
+    name = data.get('name')
     username = data.get('username')
     password = data.get('password')
     role = data.get('role')
@@ -39,12 +39,10 @@ def register():
     phone = data.get('phone')
     level = '1'
     rating_for_trainer = '0'
+    level_passed_timestamp = None
 
     if not all([username, password, role, email, phone, name, level, rating_for_trainer]):
         return jsonify({"error": "All fields are required"}), 400
-
-    if role not in ["trainer", "trainee"]:
-        return jsonify({"error": "Invalid role"}), 400
 
     if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
         return jsonify({"error": "Invalid email format"}), 400
@@ -62,7 +60,8 @@ def register():
         "email": email,
         "phone": phone,
         "level": level,
-        "rating_for_trainer": rating_for_trainer
+        "rating_for_trainer": rating_for_trainer,
+        "level_passed_timestamp": level_passed_timestamp
     }
 
     mongo.db.users.insert_one(user_data)
@@ -104,7 +103,6 @@ def logout():
 def profile():
     return jsonify("success"), 200
 
-
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
     if 'username' not in session:
@@ -132,13 +130,15 @@ def resources():
 def traineeassess():
     if 'username' not in session:
         return jsonify({"error": "Unauthorized"}), 401
-    
+    return jsonify({"message": "Welcome, Trainee Assessment"}), 200
+
 @app.route('/trainerassess', methods=['GET'])
 def trainerassess():
     if 'username' not in session:
         return jsonify({"error": "Unauthorized"}), 401
-    
-@app.route('/trainerreg', methods = ["GET"])
+    return jsonify({"message": "Welcome, Trainer Assessment"}), 200
+
+@app.route('/trainerreg', methods=['GET'])
 def trainerreg():
     if 'username' not in session:
         return jsonify({"error": "Unauthorized"}), 401
@@ -154,8 +154,15 @@ def contact():
 def campreg():
     if 'username' not in session:
         return jsonify({"error": "Unauthorized"}), 401
-    return jsonify({"message": "Welcome, Camp Registration"}), 200                    
+    return jsonify({"message": "Welcome, Camp Registration"}), 200   
 
+@app.route('/interview', methods=['GET'])
+def interview_route():
+    if 'username' not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    username = session['username']
+    asyncio.run(interview(username))
+    return jsonify({"message": "Interview started"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
