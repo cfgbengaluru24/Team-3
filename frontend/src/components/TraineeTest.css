@@ -1,0 +1,72 @@
+/* TraineeTest.css */
+
+.trainee-test-box {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    text-align: center;
+    font-size: medium;
+}
+
+.trainee-test-box h2 {
+    margin-bottom: 20px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card:hover {
+    background-color: #f0f0f0;
+}
+
+.card-content {
+    display: none;
+    padding: 10px;
+}
+
+.card-content.active {
+    display: block;
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+}
+
+.inverted-triangle {
+    margin-left: 10px;
+}
+
+.normal-triangle {
+    margin-left: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #47463E;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #AFAF9E ;
+    color: black;
+}

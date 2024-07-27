@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    font-size: 10px;
+}
+
+.contact-container {
+    padding: 2rem;
+    background-color: #AFAF9E; /* Light background color */
+    min-height: 100vh;
+}
+
+.contact-heading {
+    color: #47463E; /* Primary dark color */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.contact-section {
+    background-color: #FCFAFA; /* Light container color */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-input {
+    margin-bottom: 1rem;
+}
+
+.contact-button {
+    margin-top: 1rem;
+    background-color: #AA9C7D; /* Button color */
+    color: white;
+}
+
+.contact-link {
+    color: #47463E; /* Link color */
+    text-decoration: none;
+    font-weight: bold;
+}

@@ -13,8 +13,8 @@ import AssessmentTrainer from './components/TrainerAssessment';
 import AssessmentTrainee from './components/TraineeAssessment';
 import Check from './components/Check';
 import {AuthProvider} from './AuthContext';
-
-
+import TrainerReg from './components/TrainerReg'
+import TraineeTest from './components/TraineeTest'
 const App = () => {
   return (
     <AuthProvider>
@@ -33,6 +33,8 @@ const App = () => {
           <Route path="/assessmenttrainer" element={<AssessmentTrainer />} />
           <Route path="/assessmenttrainee" element={<AssessmentTrainee />} />
           <Route path="/check" element={<Check />} />
+          <Route path="/sessionForm" element={<TrainerReg/>} />
+          <Route path="/traineeTest" element={<TraineeTest/>} />
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>
       </Router>

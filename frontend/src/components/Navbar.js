@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Box, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import './Navbar.css';
 
@@ -18,8 +18,13 @@ const Navbar = () => {
         setAnchorEl(null);
     };
 
+    const handleLogout = () => {
+        // Add your logout logic here
+        console.log('Logged out');
+    };
+
     return (
-        <AppBar position="fixed" className="nav-nav" style={{backgroundColor:'black', marginBottom:"20px"}}>
+        <AppBar position="fixed" className="nav-nav" style={{ backgroundColor: 'black', marginBottom: "20px" }}>
             <Toolbar className="nav-toolbar">
                 <Typography variant="h6" component="div" className="nav-logo">
                     EXPA
@@ -32,6 +37,9 @@ const Navbar = () => {
                         <li><a href="#">Become a Trainer</a></li>
                     </ul>
                 </Box>
+                <Button color="inherit" onClick={handleLogout} className="nav-logout">
+                    Logout
+                </Button>
                 <IconButton
                     edge="end"
                     color="inherit"
@@ -49,8 +57,9 @@ const Navbar = () => {
                 >
                     <MenuItem onClick={handleToggle}>About</MenuItem>
                     <MenuItem onClick={handleToggle}>Resources</MenuItem>
-                    <MenuItem onClick={handleToggle}>
-                    Contact Us</MenuItem>
+                    <MenuItem onClick={handleToggle}>Contact Us</MenuItem>
+                    <MenuItem onClick={handleToggle}>Become a Trainer</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
             </Toolbar>
         </AppBar>
