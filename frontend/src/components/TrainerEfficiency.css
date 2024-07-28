@@ -1,0 +1,50 @@
+.outer-box {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .box {
+    width: 300px;
+    padding: 20px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .box h3 {
+    margin: 0;
+    font-size: 2em;
+    color: #333;
+  }
+  
+  .box p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .stars {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .star {
+    font-size: 1.5em;
+    color: #ccc;
+  }
+  
+  .star.filled {
+    color: gold;
+  }

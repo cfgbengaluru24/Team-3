@@ -15,6 +15,7 @@ import Check from './components/Check';
 import {AuthProvider} from './AuthContext';
 import PreAssessment from './components/PreAssessment';
 import PostAssessment from './components/PostAssessment';
+import TrainerEfficiency from './components/TrainerEfficiency'
 import Interview from './components/Interview';
 
 
@@ -38,7 +39,8 @@ const App = () => {
           <Route path="/assessmenttrainer" element={<AssessmentTrainer />} />
           <Route path="/assessmenttrainee" element={<AssessmentTrainee />} />
           <Route path="/check" element={<Check />} />
-          {/* <Route path="*" element={<Navigate to="/" />} /> */}
+          <Route path="/trainerefficiency" element={<TrainerEfficiency/>} />
+         
         </Routes>
       </Router>
     </AuthProvider>
