@@ -13,18 +13,22 @@ import AssessmentTrainer from './components/TrainerAssessment';
 import AssessmentTrainee from './components/TraineeAssessment';
 import Check from './components/Check';
 import {AuthProvider} from './AuthContext';
-import TrainerReg from './components/TrainerReg'
-import TraineeTest from './components/TraineeTest'
-import AdminDashboard from './components/AdminDashboard';
+import PreAssessment from './components/PreAssessment';
+import PostAssessment from './components/PostAssessment';
+import Interview from './components/Interview';
+
+
 const App = () => {
   return (
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/PreAssessment" element={<PreAssessment />} />
+          <Route path="/PostAssessment" element={<PostAssessment />} />
+          <Route path="/Interview" element={<Interview />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/register" element={<Signup />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/progress" element={<Progress />} />
@@ -34,9 +38,6 @@ const App = () => {
           <Route path="/assessmenttrainer" element={<AssessmentTrainer />} />
           <Route path="/assessmenttrainee" element={<AssessmentTrainee />} />
           <Route path="/check" element={<Check />} />
-          <Route path="/sessionForm" element={<TrainerReg/>} />
-          <Route path="/traineeTest" element={<TraineeTest/>} />
-          <Route path="/adminDashboard" element={<AdminDashboard/>} />
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>
       </Router>
