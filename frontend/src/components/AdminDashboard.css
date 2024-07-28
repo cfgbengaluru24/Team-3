@@ -1,16 +1,22 @@
 /* AdminDashboard.css */
-.dashboard {
-    padding: 20px;
+.dashboard-container {
+    display: flex;
     justify-content: center;
+  }
+  
+  .dashboard {
+    padding: 20px;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
-  /* .dashboardPar{
-    padding: 20px;
-  } */
+  
   .overview {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    width: 100%;
   }
   
   .overview-item {
@@ -45,16 +51,26 @@
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    width: 100%;
   }
   
   .statistics h2 {
     font-size: 18px;
     margin-bottom: 20px;
+    text-align: center;
   }
   
   .statistics-content {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pie-chart-container {
+    width: 80%; /* Adjust this value to make the pie chart smaller or larger */
+    max-width: 900px; /* Maximum width of the pie chart */
   }
   
