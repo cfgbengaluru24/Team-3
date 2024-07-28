@@ -36,6 +36,7 @@ const Navbar = () => {
                         <li><a href="\resources">Resources</a></li>
                         <li><a href="\contact">Contact Us</a></li>
                         <li><a href="\registertrainer">Add Session</a></li>
+                        <li><a href="\interview">Assess</a></li>
                     </ul>
                 </Box>
                 <Button color="inherit" onClick={handleLogout} className="nav-logout">

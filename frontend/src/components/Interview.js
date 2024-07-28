@@ -1,65 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import './Interviewer.css';
 
-const Interview = () => {
+const questionsData = [
+    {
+        level: 1,
+        questions: [
+            "What is decision making",
+            "Why does term unethical hacking mean?",
+            "What does the term mean"
+        ]
+    },
+    {
+        level: 2,
+        questions: [
+            "Describe a challenging situation you faced.",
+            "How do you handle stress?",
+            "Where do you see yourself in 5 years?"
+        ]
+    },
+    // Add more levels and questions as needed
+];
+
+function Interview() {
     const [level, setLevel] = useState(1);
-    const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [response, setResponse] = useState('');
     const [feedback, setFeedback] = useState('');
     const [completed, setCompleted] = useState(false);
 
+    const currentLevelData = questionsData.find(q => q.level === level);
+    const questions = currentLevelData ? currentLevelData.questions : [];
+
     const handleInputChange = (e) => {
         setResponse(e.target.value);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            const currentQuestion = questions[currentQuestionIndex];
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/interview/response`, 
-                { question: currentQuestion, response }, { withCredentials: true });
-            setFeedback(res.data.feedback);
-            setResponse('');
+        setFeedback(`Your answer: ${response}`);
+        setResponse('');
 
-            if (res.data.passed) {
-                setCurrentQuestionIndex((prevIndex) => {
-                    const newIndex = prevIndex + 1;
-                    if (newIndex >= questions.length) {
-                        // Fetch new questions for the next level
-                        fetchQuestions();
-                        setLevel((prevLevel) => prevLevel + 1);
-                        if (level >= 5) {
-                            setCompleted(true);
-                        }
-                        return 0; // Reset question index for new level
+        setTimeout(() => {
+            setCurrentQuestionIndex((prevIndex) => {
+                const newIndex = prevIndex + 1;
+                if (newIndex >= questions.length) {
+                    if (level >= questionsData.length) {
+                        setCompleted(true);
                     } else {
-                        return newIndex;
+                        setLevel(level + 1);
+                        setCurrentQuestionIndex(0);
                     }
-                });
-            }
-        } catch (error) {
-            console.error(error);
-        }
+                } else {
+                    setCurrentQuestionIndex(newIndex);
+                }
+            });
+            setFeedback('');
+        }, 1000);
     };
-
-    const fetchQuestions = async () => {
-        try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/interview/questions`, 
-                { withCredentials: true });
-            setQuestions(res.data.questions);
-            setCurrentQuestionIndex(0); // Reset question index for new set of questions
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    useEffect(() => {
-        fetchQuestions();
-    }, [level]);
 
     return (
-        <div>
+        <div className="App">
             {completed ? (
                 <div>
                     <h1>Interview Completed</h1>
@@ -87,6 +87,6 @@ const Interview = () => {
             )}
         </div>
     );
-};
+}
 
 export default Interview;
