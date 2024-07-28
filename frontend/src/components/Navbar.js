@@ -32,10 +32,18 @@ const Navbar = () => {
             
                 <Box className="nav-main_list">
                     <ul className="nav-navlinks">
+<<<<<<< HEAD
                         <li><a href="/about">About</a></li>
                         <li><a href="/resources">Resources</a></li>
                         <li><a href="/contact">Contact Us</a></li>
                         <li><a href="/">Become a Trainer</a></li>
+=======
+                        <li><a href="\about">About</a></li>
+                        <li><a href="\resources">Resources</a></li>
+                        <li><a href="\contact">Contact Us</a></li>
+                        <li><a href="\registertrainer">Add Session</a></li>
+                        <li><a href="\interview">Assess</a></li>
+>>>>>>> a5362bc3c8e2ea98be921d1cd9d70003a3a76a01
                     </ul>
                 </Box>
                 <Button color="inherit" onClick={handleLogout} className="nav-logout">

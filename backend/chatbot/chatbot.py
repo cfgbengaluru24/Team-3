@@ -132,3 +132,7 @@ async def interview(username):
         else:
             print(f"You failed to pass level {current_level}. Try again later.")
             break
+
+if __name__ == "__main__":
+    username = input("Enter your username: ")
+    asyncio.run(interview(username))
