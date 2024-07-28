@@ -101,6 +101,39 @@ def logout():
     session.pop('role', None)
     return jsonify({"message": "Logout successful"}), 200
 
+@app.route('/resources', methods=['GET'])
+def get_resources():
+    if 'username' not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    user = mongo.db.users.find_one({"username": session['username']})
+    user_level = user['level']
+    
+    resources = mongo.db.resources.find({"level": user_level})
+    return jsonify([{
+        "title": resource["title"],
+        "link": resource["link"]
+    } for resource in resources]), 200
+
+@app.route('/resources', methods=['POST'])
+def add_resource():
+    data = request.get_json()
+    title = data.get('title')
+    link = data.get('link')
+    level = data.get('level')
+
+    if not all([title, link, level]):
+        return jsonify({"error": "All fields are required"}), 400
+
+    resource_data = {
+        "title": title,
+        "link": link,
+        "level": level
+    }
+
+    mongo.db.resources.insert_one(resource_data)
+    return jsonify({"message": "Resource added successfully"}), 201
+
 @app.route('/check', methods=['GET'])
 def profile():
     return jsonify("success"), 200
