@@ -33,6 +33,8 @@
 }
 
 .home-image img {
+    width: 80%;
     max-width: 100%;
     height: auto;
+    transform: translateX(+130px);
 }

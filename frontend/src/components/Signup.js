@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, TextField, Button, Container } from '@mui/material';
-import homepageImage from '../assets/HomeImage.png'; // Replace with the actual path to your image
+import homepageImage from '../assets/HomeImage.jpeg'; // Replace with the actual path to your image
 import './Register.css';
 
 const Register = () => {

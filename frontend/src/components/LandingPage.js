@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import HomeImage from '../assets/HomeImage.png';
+import HomeImage from '../assets/HomeImage.jpeg';
 import './LandingPage.css'
 import Navbar from './Navbar';
 const LandingPage = () => {

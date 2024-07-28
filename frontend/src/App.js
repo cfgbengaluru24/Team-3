@@ -15,6 +15,7 @@ import Check from './components/Check';
 import {AuthProvider} from './AuthContext';
 import TrainerReg from './components/TrainerReg'
 import TraineeTest from './components/TraineeTest'
+import AdminDashboard from './components/AdminDashboard';
 const App = () => {
   return (
     <AuthProvider>
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/check" element={<Check />} />
           <Route path="/sessionForm" element={<TrainerReg/>} />
           <Route path="/traineeTest" element={<TraineeTest/>} />
+          <Route path="/adminDashboard" element={<AdminDashboard/>} />
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>
       </Router>

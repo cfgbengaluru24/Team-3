@@ -146,9 +146,7 @@ def trainerreg():
 
 @app.route('/contact', methods=['GET'])
 def contact():
-    if 'username' not in session:
-        return jsonify({"error": "Unauthorized"}), 401
-    return jsonify({"message": "Contact Us"}), 200  
+    
 
 @app.route('/campreg', methods=['GET'])
 def campreg():
