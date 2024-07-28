@@ -9,38 +9,33 @@ const SessionForm = () => {
     const [location, setLocation] = useState('');
     const [time, setTime] = useState('');
     const [trainerName, setTrainerName] = useState('');
-    const [sessionType, setSessionType] = useState('');
+    // const [sessionType, setSessionType] = useState('');
     const navigate = useNavigate();
+    const [sessionDate, setSessionDate] = useState('');
+    const [trainerEmail, setTrainerEmail] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const sessionData = {
-            sessionName,
-            campId,
-            location,
-            time,
-            trainerName,
-            sessionType,
-        };
-
-        try {
-            // Uncomment the line below when ready to make the actual API call
-            // const response = await axios.post(`${process.env.REACT_APP_API_URL}/session`, sessionData);
-            // console.log('Session created:', response.data);
-            
-            // Clear form after successful submission
-            setSessionName('');
-            setCampId('');
-            setLocation('');
-            setTime('');
-            setTrainerName('');
-            setSessionType('');
-            
-            // Redirect to /dashboard
-            navigate('/dashboard');
-        } catch (error) {
-            console.error('There was an error creating the session:', error);
-        }
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            try{
+                const response = await axios.post(`${process.env.REACT_APP_API_URL}/sessiontrack`, {
+                    sessionName,
+                    campId,
+                    location,
+                    time,
+                    trainerName,
+                    trainerEmail,
+                    // sessionType,
+                    sessionDate
+                }, { withCredentials: true });
+                console.log("Session Response:", response.data);
+                if (response.status === 200) {
+                    navigate('/home');
+                } else {
+                    console.log('Session failed');
+                }
+            } catch (error) {
+                console.error('Error creating session:', error);
+            }
     };
 
     return (
@@ -98,6 +93,26 @@ const SessionForm = () => {
                     />
                 </div>
                 <div className="session-form-group">
+                    <label className="session-label">Session Date:</label>
+                    <input 
+                        type="date" 
+                        value={sessionDate} 
+                        onChange={(e) => setSessionDate(e.target.value)} 
+                        required 
+                        className="session-input"
+                    />
+                </div>
+                <div className="session-form-group">
+                    <label className="session-label">Trainer Email:</label>
+                    <input 
+                        type="email" 
+                        value={trainerEmail} 
+                        onChange={(e) => setTrainerEmail(e.target.value)} 
+                        required 
+                        className="session-input"
+                    />
+                </div>
+                {/* <div className="session-form-group">
                     <label className="session-label">Type of Session:</label>
                     <select 
                         value={sessionType} 
@@ -111,7 +126,7 @@ const SessionForm = () => {
                         <option value="ethics">Ethics</option>
                         <option value="gender sensitivity">Gender Sensitivity</option>
                     </select>
-                </div>
+                </div> */}
                 <button type="submit" className="session-button">Create Session</button>
             </form>
         </div>
